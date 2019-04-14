@@ -17,7 +17,6 @@ long matC[MAX][MAX];
 int paso = 0;
 
 struct entradas {
-    double acum;
     long inicio;
     long fin;
 };
@@ -28,7 +27,6 @@ void* multi(void* args)
     misEntradas = (struct entradas *) args;
     long inicio = misEntradas->inicio;
     long fin = misEntradas->fin;
-    // Each thread computes 1/4th of matrix multiplication 
     for(long i = inicio; i < fin; i++){
         for (int j = 0; j < MAX; j++){
             for (int k = 0; k < MAX; k++){
@@ -44,7 +42,6 @@ int main(void){
     pthread_t threads[NUM_THREADS];
     struct entradas td[NUM_THREADS];
     long paso = MAX/NUM_THREADS;
-    long imas1 = 1;
 
     int k;
     for(int i = 0; i < MAX; i++)
@@ -69,43 +66,6 @@ int main(void){
         
     }
     
-
-    /*
-    matA[0][0] = 1;
-    matA[0][1] = 2;
-    matA[0][2] = 3;
-    matA[0][3] = 4;
-    matA[1][0] = 5;
-    matA[1][1] = 6;
-    matA[1][2] = 7;
-    matA[1][3] = 8;
-    matA[2][0] = 9;
-    matA[2][1] = 10;
-    matA[2][2] = 11;
-    matA[2][3] = 12;
-    matA[3][0] = 13;
-    matA[3][1] = 14;
-    matA[3][2] = 15;
-    matA[3][3] = 16;
-
-    matB[0][0] = 1;
-    matB[0][1] = 2;
-    matB[0][2] = 3;
-    matB[0][3] = 4;
-    matB[1][0] = 5;
-    matB[1][1] = 6;
-    matB[1][2] = 7;
-    matB[1][3] = 8;
-    matB[2][0] = 9;
-    matB[2][1] = 10;
-    matB[2][2] = 11;
-    matB[2][3] = 12;
-    matB[3][0] = 13;
-    matB[3][1] = 14;
-    matB[3][2] = 15;
-    matB[3][3] = 16;
-    */
-
     // Displaying matA 
     // cout << endl 
     //     << "Matrix A" << endl; 
@@ -123,8 +83,6 @@ int main(void){
     //         cout << matB[i][j] << " ";         
     //     cout << endl; 
     // }
-
-    //multi((void *)&td);
     
     clock_t t;
     t = clock();
